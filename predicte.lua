@@ -117,7 +117,7 @@ end
 
 local _click = Card.click
 function Card:click(...)
-    if self.area and self.area.config and self.area.config == "shop" then
+    if self.area and self.area.config and self.area.config.type == "shop" then
         if self.ability.name:find("Arcana") then
             predicte_pseudrandom(predicte_cards, self, predicte_arcana_pack)
         elseif self.ability.name:find("Celestial") then
