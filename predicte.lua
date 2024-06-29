@@ -2,7 +2,7 @@
 --- MOD_NAME: Predicte
 --- MOD_ID: Predicte
 --- MOD_AUTHOR: [Jerry]
---- MOD_DESCRIPTION: Predicte
+--- MOD_DESCRIPTION: Predict possible cards in the package
 ----------------------------------------------
 ------------MOD CODE -------------------------
 
