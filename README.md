@@ -8,3 +8,8 @@
 ## Features
 Real time preview of package content
 <p align="center"><img src="demo/1.gif" style="width:60%"/></p>
+
+---
+<p align="center">
+    <b>Sponsored Links: [爱发电](https://afdian.net/a/jerry457)</b>
+</p>
