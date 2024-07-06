@@ -1,8 +1,8 @@
 --- STEAMODDED HEADER
---- MOD_NAME: Predicte
---- MOD_ID: Predicte
+--- MOD_NAME: PreviewPackage
+--- MOD_ID: PreviewPackage
 --- MOD_AUTHOR: [Jerry]
---- MOD_DESCRIPTION: Predict possible cards in the package
+--- MOD_DESCRIPTION: Real time preview of package content
 ----------------------------------------------
 ------------MOD CODE -------------------------
 
@@ -54,14 +54,14 @@ local function predicte_arcana_pack()
 end
 
 local function predicte_standard_pack()
-    local card = create_card((pseudorandom(pseudoseed("stdset"..G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", G.pack_cards, nil, nil, nil, true, nil, "sta")
+    local card = create_card((pseudorandom(pseudoseed("stdset" .. G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", G.pack_cards, nil, nil, nil, true, nil, "sta")
     local edition_rate = 2
-    local edition = poll_edition("standard_edition"..G.GAME.round_resets.ante, edition_rate, true)
+    local edition = poll_edition("standard_edition" .. G.GAME.round_resets.ante, edition_rate, true)
     card:set_edition(edition)
     local seal_rate = 10
-    local seal_poll = pseudorandom(pseudoseed("stdseal"..G.GAME.round_resets.ante))
+    local seal_poll = pseudorandom(pseudoseed("stdseal" .. G.GAME.round_resets.ante))
     if seal_poll > 1 - 0.02*seal_rate then
-        local seal_type = pseudorandom(pseudoseed("stdsealtype"..G.GAME.round_resets.ante))
+        local seal_type = pseudorandom(pseudoseed("stdsealtype" .. G.GAME.round_resets.ante))
         if seal_type > 0.75 then card:set_seal("Red")
         elseif seal_type > 0.5 then card:set_seal("Blue")
         elseif seal_type > 0.25 then card:set_seal("Gold")
