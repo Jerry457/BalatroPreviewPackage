@@ -102,6 +102,77 @@ local function predicte_buffoon_pack()
     return create_card("Joker", G.pack_cards, nil, nil, true, true, nil, "buf")
 end
 
+local function predicte_alchemical_pack()
+    return create_card("Alchemical", G.pack_cards, nil, nil, true, true, nil, "alc")
+end
+
+local function predicte_oddity_pack()
+    return create_card("Oddity", G.pack_cards, nil, nil, true, true, nil, "odd")
+end
+
+local function predicte_colour_pack()
+    return create_card("Colour", G.pack_cards, nil, nil, true, true, nil, "col")
+end
+
+local function predicte_megafilm_pack()
+    return create_card("Cine", G.pack_cards, nil, nil, true, true, nil, "film")
+end
+
+local function predicte_film_pack()
+    return create_card("Cine_Quest", G.pack_cards, nil, nil, true, true, nil, "film")
+end
+
+local function predicte_fortune_pack()
+    if pseudorandom('fortune-pack-tarot') < 0.75 then
+        if pseudorandom('fortune-pack-spectral') < 0.95 then
+            return create_pack_card('Fortune', 'TarotPlanet', G.pack_cards, nil, nil, true, true, nil, "fort")
+        else
+            return create_pack_card('Fortune', 'Spectral', G.pack_cards, nil, nil, true, true, nil, "fort")
+        end
+    else
+        return create_pack_card('Fortune', 'Joker', G.pack_cards, nil, nil, true, true, nil, "fort")
+    end
+end
+
+local function predicte_suits_pack()
+    if pseudorandom('fortune-pack-tarot') < 0.75 then
+        if pseudorandom('fortune-pack-spectral') < 0.95 then
+            return create_pack_card('Suits', 'TarotPlanet', G.pack_cards, nil, nil, true, true, nil, "fort")
+        else
+            return create_pack_card('Suits', 'Spectral', G.pack_cards, nil, nil, true, true, nil, "fort")
+        end
+    else
+        return create_pack_card('Suits', 'Joker', G.pack_cards, nil, nil, true, true, nil, "fort")
+    end
+end
+
+local function predicte_bonus_pack()
+    if pseudorandom('fortune-pack-tarot') < 0.75 then
+        if pseudorandom('fortune-pack-spectral') < 0.95 then
+            return create_pack_card('Bonus', 'TarotPlanet', G.pack_cards, nil, nil, true, true, nil, "fort")
+        else
+            return create_pack_card('Bonus', 'Spectral', G.pack_cards, nil, nil, true, true, nil, "fort")
+        end
+    else
+        local card = create_card("Enhanced", G.pack_cards, nil, nil, nil, true, nil, 'sta')
+                            local edition_rate = 2
+                            local edition = poll_edition('standard_edition'..G.GAME.round_resets.ante, edition_rate, true)
+                            card:set_edition(edition)
+                            local seal_rate = 10
+                            local seal_poll = pseudorandom(pseudoseed('stdseal'..G.GAME.round_resets.ante))
+                            if seal_poll > 1 - 0.02*seal_rate then
+                                local seal_type = pseudorandom(pseudoseed('stdsealtype'..G.GAME.round_resets.ante))
+                                if seal_type > 0.75 then card:set_seal('Red')
+                                elseif seal_type > 0.5 then card:set_seal('Blue')
+                                elseif seal_type > 0.25 then card:set_seal('Gold')
+                                else card:set_seal('Purple')
+                                end
+                            end
+        return card
+    end
+
+end
+
 function Card:remove_prediction_card()
     for k, card in pairs(self.prediction_cards or {}) do
         card:remove()
@@ -130,6 +201,22 @@ function Card:click(...)
             predicte_pseudrandom(predicte_cards, self, predicte_spectral_pack)
         elseif self.ability.name:find("Buffoon") then
             predicte_pseudrandom(predicte_cards, self, predicte_buffoon_pack)
+        elseif self.ability.name:find("Alchemy") then
+            predicte_pseudrandom(predicte_cards, self, predicte_alchemical_pack)
+        elseif self.ability.name:find("Oddity") then
+            predicte_pseudrandom(predicte_cards, self, predicte_oddity_pack)
+        elseif self.ability.name:find("Colour") then
+            predicte_pseudrandom(predicte_cards, self, predicte_colour_pack)
+        elseif self.ability.name:find("Film") and self.ability.name:find("Mega") then
+            predicte_pseudrandom(predicte_cards, self, predicte_megafilm_pack)
+        elseif self.ability.name:find("Film") then
+            predicte_pseudrandom(predicte_cards, self, predicte_film_pack)
+        elseif self.ability.name:find("Fortune") then
+            predicte_pseudrandom(predicte_cards, self, predicte_fortune_pack)
+        elseif self.ability.name:find("Suits") then
+            predicte_pseudrandom(predicte_cards, self, predicte_suits_pack)
+        elseif self.ability.name:find("Bonus") then
+            predicte_pseudrandom(predicte_cards, self, predicte_bonus_pack)
         end
     end
 
