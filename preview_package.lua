@@ -212,7 +212,7 @@ function Card:click(...)
         elseif self.ability.name:find("Film") then
             predicte_pseudrandom(predicte_cards, self, predicte_film_pack)
         elseif self.ability.name:find("Fortune") then
-            predicte_pseudrandom(predicte_cards, self, predicte_fortune_pack)
+            -- predicte_pseudrandom(predicte_cards, self, predicte_fortune_pack)
         elseif self.ability.name:find("Suits") then
             predicte_pseudrandom(predicte_cards, self, predicte_suits_pack)
         elseif self.ability.name:find("Bonus") then
