@@ -191,32 +191,34 @@ function Card:click(...)
     if self.area and self.area.config and self.area.config.type == "shop" then
         if self.highlighted then -- dis_highlighted
             self:remove_prediction_card()
-        elseif self.ability.name:find("Arcana") then
-            predicte_pseudrandom(predicte_cards, self, predicte_arcana_pack)
-        elseif self.ability.name:find("Celestial") then
-            predicte_pseudrandom(predicte_cards, self, predicte_celestial_pack)
-        elseif self.ability.name:find("Standard") then
-            predicte_pseudrandom(predicte_cards, self, predicte_standard_pack)
-        elseif self.ability.name:find("Spectral") then
-            predicte_pseudrandom(predicte_cards, self, predicte_spectral_pack)
-        elseif self.ability.name:find("Buffoon") then
-            predicte_pseudrandom(predicte_cards, self, predicte_buffoon_pack)
-        elseif self.ability.name:find("Alchemy") then
-            predicte_pseudrandom(predicte_cards, self, predicte_alchemical_pack)
-        elseif self.ability.name:find("Oddity") then
-            predicte_pseudrandom(predicte_cards, self, predicte_oddity_pack)
-        elseif self.ability.name:find("Colour") then
-            predicte_pseudrandom(predicte_cards, self, predicte_colour_pack)
-        elseif self.ability.name:find("Film") and self.ability.name:find("Mega") then
-            predicte_pseudrandom(predicte_cards, self, predicte_megafilm_pack)
-        elseif self.ability.name:find("Film") then
-            predicte_pseudrandom(predicte_cards, self, predicte_film_pack)
-        elseif self.ability.name:find("Fortune") then
-            -- predicte_pseudrandom(predicte_cards, self, predicte_fortune_pack)
-        elseif self.ability.name:find("Suits") then
-            predicte_pseudrandom(predicte_cards, self, predicte_suits_pack)
-        elseif self.ability.name:find("Bonus") then
-            predicte_pseudrandom(predicte_cards, self, predicte_bonus_pack)
+        elseif self.ability.set == "Booster" then 
+            if self.ability.name:find("Arcana") then
+                predicte_pseudrandom(predicte_cards, self, predicte_arcana_pack)
+            elseif self.ability.name:find("Celestial") then
+                predicte_pseudrandom(predicte_cards, self, predicte_celestial_pack)
+            elseif self.ability.name:find("Standard") then
+                predicte_pseudrandom(predicte_cards, self, predicte_standard_pack)
+            elseif self.ability.name:find("Spectral") then
+                predicte_pseudrandom(predicte_cards, self, predicte_spectral_pack)
+            elseif self.ability.name:find("Buffoon") then
+                predicte_pseudrandom(predicte_cards, self, predicte_buffoon_pack)
+            elseif self.ability.name:find("Alchemy") then
+                predicte_pseudrandom(predicte_cards, self, predicte_alchemical_pack)
+            elseif self.ability.name:find("Oddity") then
+                predicte_pseudrandom(predicte_cards, self, predicte_oddity_pack)
+            elseif self.ability.name:find("Colour") then
+                predicte_pseudrandom(predicte_cards, self, predicte_colour_pack)
+            elseif self.ability.name:find("Film") and self.ability.name:find("Mega") then
+                predicte_pseudrandom(predicte_cards, self, predicte_megafilm_pack)
+            elseif self.ability.name:find("Film") then
+                predicte_pseudrandom(predicte_cards, self, predicte_film_pack)
+            elseif self.ability.name:find("Fortune") then
+                predicte_pseudrandom(predicte_cards, self, predicte_fortune_pack)
+            elseif self.ability.name:find("Suits") then
+                predicte_pseudrandom(predicte_cards, self, predicte_suits_pack)
+            elseif self.ability.name:find("Bonus") then
+                predicte_pseudrandom(predicte_cards, self, predicte_bonus_pack)
+            end
         end
     end
 
