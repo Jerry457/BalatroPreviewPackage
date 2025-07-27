@@ -6,6 +6,8 @@
 ----------------------------------------------
 ------------MOD CODE -------------------------
 
+print("PreviewPackage loaded")
+
 local function predicte_pseudrandom(predicte_fn, ...)
     local ante = G.GAME.round_resets.ante
     local used_jokers = copy_table(G.GAME.used_jokers)
