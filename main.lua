@@ -191,8 +191,8 @@ end
 local _click = Card.click
 function Card:click(...)
     if self.area and self.area.config and self.area.config.type == "shop" then
+        self:remove_prediction_card()
         if self.highlighted then -- dis_highlighted
-            self:remove_prediction_card()
         elseif self.ability.name:find("Arcana") then
             predicte_pseudrandom(predicte_cards, self, predicte_arcana_pack)
         elseif self.ability.name:find("Celestial") then
@@ -231,6 +231,16 @@ function Card:highlight(is_higlighted, ...)
         self:remove_prediction_card()
     end
     return _highlight(self, is_higlighted, ...)
+end
+
+local _end_booster_session = Game.end_booster_session
+function Game:end_booster_session(...)
+    if G.shop_booster then
+        for _, card in ipairs(G.shop_booster.cards) do
+            card:remove_prediction_card()
+        end
+    end
+    return _end_booster_session(self, ...)
 end
 ----------------------------------------------
 ------------MOD CODE END----------------------
